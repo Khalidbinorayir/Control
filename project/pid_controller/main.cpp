@@ -313,6 +313,12 @@ double max_steer = 1.3;
           double desired_steering = recommendation.steering;
           double desired_speed = recommendation.speed;
           error_steer = correct_angle(desired_steering - current_steering);
+		/* The steering error is calculated by finding the difference between the desired steering angle and the current steering angle,
+  then normalizing that difference to ensure it's within a manageable range (usually between -π and π). 
+  This is important because angles can wrap around, and without normalization, 
+  the error could be very large or confusing (e.g., a difference of 350° might actually just be a small 10° change). 
+  By normalizing the error, it makes sure that the steering control system can make smooth and accurate adjustments,
+  avoiding large jumps or incorrect steering corrections. */
 
           /**
           * TODO (step 3): uncomment these lines
@@ -346,8 +352,14 @@ double max_steer = 1.3;
           * TODO (step 2): compute the throttle error (error_throttle) from the position and the desired speed
           **/
           // modify the following line for step 2
-          error_throttle = 0;
+          error_throttle = 0.0;
 	  error_throttle = desired_speed - velocity;
+		/*The throttle error is calculated by finding the difference between the desired speed and the current velocity.
+  This gives the amount by which the vehicle needs to speed up or slow down. If the desired speed is higher than the current velocity,
+  the error will be positive, indicating the vehicle needs to accelerate. 
+  If the desired speed is lower,
+  the error will be negative, meaning the vehicle needs to decelerate. 
+  This simple difference helps the control system adjust the throttle to reach the target speed.  */
 
 
 

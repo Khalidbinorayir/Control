@@ -220,7 +220,7 @@ int main ()
   **/
 PID pid_steer = PID();
 double max_steer = 1.3;
-	pid_steer.Init(0.25, 0.01, 0.25, max_steer, -max_steer, 10);
+	pid_steer.Init(0.3, 0.01, 0.4, max_steer, -max_steer);
 
   // initialize pid throttle
   /**
@@ -230,7 +230,7 @@ double max_steer = 1.3;
   PID pid_throttle = PID();
   double max_throttle = 1; 
   double max_break = -1;
-	pid_throttle.Init(0.25, 0.05, 0.1, max_throttle, max_break, 10);
+	pid_throttle.Init(0.35, 0.01, 0.2, max_throttle, max_break);
 	
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
   {
